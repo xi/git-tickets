@@ -1,0 +1,55 @@
+#!/bin/sh
+
+help() {
+	cat << EOF
+Simple ticket filtering.
+
+Usage:
+  git tickets [-s STATE] [-A USER] [-a USER] [-p USER]… [-l LABEL]… [QUERY]…
+
+Options:
+  -s  Filter by state [default: open]
+  -A  Filter by author
+  -a  Filter by assignee
+  -p  Filter by participant
+  -l  Filter by label
+  -q  Filter by generic case-insensitive query
+EOF
+}
+
+files=$(git ls-files)
+default_status=true
+
+filter() {
+	if [ -n "$files" ]; then
+		files=$(git grep $2 -l "$1" $files)
+	fi
+}
+
+while getopts hs:A:a:p:l:q: flag; do
+	case "$flag" in
+		(h) help; exit 0;;
+		(s) filter "^State: $OPTARG$"; default_status=false;;
+		(A) filter "^Author: $OPTARG$";;
+		(a) filter "^Assigneee: $OPTARG$";;
+		(p) filter "^From $OPTARG";;
+		(l) filter "^Labels: .*\<$OPTARG\>";;
+		(*) exit 1;;
+	esac
+done
+shift $(($OPTIND-1))
+
+if [ $default_status = true ]; then
+	filter "^State: open$"
+fi
+
+for query; do
+	filter "$query" -i
+done
+
+for ticket in $files; do
+	subject=$(grep '^Subject: ' $ticket | sed 's/^Subject: //')
+	labels=$(grep '^Labels: ' $ticket | sed 's/^Labels: //')
+	messages=$(grep 'From ' $ticket | wc -l)
+	echo "$ticket - $subject [$labels] ($messages)"
+done | sort -h
