@@ -26,10 +26,22 @@ filter() {
 	fi
 }
 
+filter_state() {
+	default_status=false
+	if ! [ "$1" = "all" ]; then
+		if [ "$1" = "open" ]; then
+			files=$(git grep -l "^State: $1$" $files; \
+				git grep --files-without-match "^State: ")
+		else
+			filter "^State: $1$"
+		fi
+	fi
+}
+
 while getopts hs:A:a:p:l:q: flag; do
 	case "$flag" in
 		(h) help; exit 0;;
-		(s) filter "^State: $OPTARG$"; default_status=false;;
+		(s) filter_state "$OPTARG";;
 		(A) filter "^Author: $OPTARG$";;
 		(a) filter "^Assigneee: $OPTARG$";;
 		(p) filter "^From $OPTARG";;
@@ -40,7 +52,7 @@ done
 shift $(($OPTIND-1))
 
 if [ $default_status = true ]; then
-	filter "^State: open$"
+	filter_state "open"
 fi
 
 for query; do
