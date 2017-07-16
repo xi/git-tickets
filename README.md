@@ -166,7 +166,7 @@ free-text communication. But there are some important differences:
 -	A separate authentication system is used.
 -	A separate server is needed.
 
-### How does git-tickets compare to mailing debbugs?
+### How does git-tickets compare to debbugs?
 
 [debbugs] is basically a mailing list optimized for tickets. It solves the
 issue of filtering tickets. The other differences still apply.
