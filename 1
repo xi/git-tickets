@@ -1,0 +1,26 @@
+From tobias.bengfort@posteo.de Sun Jul 16 18:54:39 2017
+Subject: References
+Author: tobias.bengfort@posteo.de
+Labels: enhancement
+
+A notable github feature is still missing in git-tickets: A simple way
+to reference tickets, users, and code. On github, the following
+references are possible:
+
+-	`@{user}`
+-	`#{ticket}`
+-	`{commit-hash}[#diff-{file-hash}[R{line}]]`
+
+The string `fix #{ticket}` somewhere in a commit or pull-request will
+automatically close that ticket on merge. Also, a ticket automatically
+contains back-references to tickets or commits that reference it.
+
+A simple way to have similar (though very limited) functionality is to
+use tig as a pager. This will allow to automatically link to a commit
+from a line like this:
+
+	commit {hash}
+
+There has been a [feature
+request](https://github.com/jonas/tig/issues/299) to extend this syntax
+for a long time, but nobody seems to be particularly interested.
