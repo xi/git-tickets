@@ -263,4 +263,5 @@ and a wiki included. Main differences:
 
 [stagit]: https://git.2f30.org/stagit/
 [tig]: https://jonas.github.io/tig/
+[tig-feature-request]: https://github.com/jonas/tig/issues/299
 [mutt]: http://www.mutt.org/
