@@ -104,7 +104,7 @@ Also note that any changes can be tracked in the git history.
 
 ### How can I edit code and tickets at the same time.
 
-This is a clear disadvantage of this approach: You can not easily switch
+This is a clear disadvantage of this approach: You cannot easily switch
 between regular code and the "tickets" branch. You can have a second clone of
 the repo though.
 
@@ -129,13 +129,14 @@ deal with HTML-email, MIME, encryption, different encodings, ….
 ### Why are there no threaded discussions? Even github has them!
 
 Github does not have threaded discussions in general. However, you can comment
-code lines in pull requests, which results in somthing very similar to threads.
+code lines in pull requests, which results in something very similar to
+threads.
 
 Unfortunately, it is quite hard to represent threads in a human readable plain
-text file. You may use the `In-Reply-To` header, but I belive that extensive
+text file. You may use the `In-Reply-To` header, but I believe that extensive
 quoting should be sufficient for most cases.
 
-### When the zombie apocalypse starts and the github engineers are among the first victims (god behold!) and github goes down imidiately, will this be our saviour?
+### When the zombie apocalypse starts and the github engineers are among the first victims (god behold!) and github goes down immediately, will this be our saviour?
 
 Yes.
 
@@ -147,8 +148,8 @@ there are some key differences:
 -	[github] is much more than a ticket system and offers (among other things)
 	hosting, a web interface, permission management, and project discovery.
 -	A web interface is used instead of editing plain text files.
--	A seperate authentication system is used.
--	Github is a single point of failure. You can not easily migrate to another
+-	A separate authentication system is used.
+-	Github is a single point of failure. You cannot easily migrate to another
 	hoster.
 
 ### How does git-tickets compare to mailing lists?
@@ -162,7 +163,7 @@ free-text communication. But there are some important differences:
 
 -	No ticket-specific filters.
 -	Tools do not implicitly know about the code that is discussed.
--	A seperate authentication system is used.
+-	A separate authentication system is used.
 -	A separate server is needed.
 
 ### How does git-tickets compare to mailing debbugs?
